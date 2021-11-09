@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { columnDef, RenderType } from './columnDef';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'geek-trust-admin-ui';
+  title = 'Admin UI';  
 }

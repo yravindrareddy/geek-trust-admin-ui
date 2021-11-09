@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="search-container">
+    <mat-form-field class="search" appearance="outline">        
+        <input matInput type="text" [(ngModel)]="searchInput" placeholder="Search by name, email or role" (ngModelChange)="onSearch()">
+        <button *ngIf="searchInput" matSuffix mat-icon-button aria-label="Clear" (click)="searchInput=''">
+          <mat-icon>close</mat-icon>
+        </button>
+    </mat-form-field>
+    <div>
+      <button mat-raised-button color="accent" [disabled]="!tableChild?.selection.hasValue()" (click)="deleteSelected()">Delete All Selected</button>
+    </div>
+  </div>
+  <app-table [columnDefs]="columnnDefs" [pageSize]="pageSize" [tableData]="tableData" 
+    (editRecord)="onEdit($event)" (deleteRecord)="onDelete($event)">
+  </app-table>   
+</div>

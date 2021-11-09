@@ -1,0 +1,41 @@
+.container {
+    width: 90vw;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+app-table {
+    width: 100%;
+    margin-top: 10px;
+}
+
+:host ::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix {
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.search {
+    margin-top: 1.5em;
+    width: 60vw;
+}
+
+.search-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;    
+}
+
+@media only screen and (max-width: 600px) {
+    .search-container {
+        flex-direction: column;   
+    }
+
+    .search {
+        width: 85vw;
+    }
+
+    button {
+        width: 85vw;
+        margin-bottom: 1em;
+    }
+}

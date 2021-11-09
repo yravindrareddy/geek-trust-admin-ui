@@ -1,0 +1,35 @@
+.page {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;    
+    text-align: center;
+    margin: 10px;
+    cursor: pointer;
+    background-color: #3366ff;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;  
+}
+
+.disabled {
+    background-color: darkgray;
+    color: lightgray;
+}
+
+.selected {
+    border: 1px solid #3366ff;
+    background-color: white;
+    color: #3366ff;
+}
+
+.paginator {
+    display: flex;
+    justify-content: start;
+    flex-wrap: wrap;
+}
+
+.disabled { 
+    pointer-events: none; 
+    opacity: 2.0;
+}

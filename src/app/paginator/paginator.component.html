@@ -1,0 +1,18 @@
+<div class="paginator">    
+    <div class="page page-icon" [ngClass]="{'disabled':selectedPage === 1}" (click)="onFirstPage()">
+        <mat-icon aria-hidden="false" aria-label="First Page">first_page</mat-icon>
+    </div>
+    <div class="page page-icon" [ngClass]="{'disabled':selectedPage === 1}" (click)="onPrevious()">
+        <mat-icon aria-hidden="false" aria-label="Previous Page">keyboard_arrow_left</mat-icon>
+    </div>    
+    <div class="page page-no" [ngClass]="{'selected': selectedPage === page }" *ngFor="let page of pages" (click)="onPagination(page)">
+        {{page}}
+    </div>   
+    <div class="page page-icon" [ngClass]="{'disabled':selectedPage === lastPage}" (click)="onNext()">
+        <mat-icon aria-hidden="false" aria-label="Next Page">keyboard_arrow_right</mat-icon>
+    </div>
+    <div class="page page-icon" [ngClass]="{'disabled':selectedPage === lastPage}" (click)="onLastPage()">
+        <mat-icon aria-hidden="false" aria-label="Last Page">last_page</mat-icon>
+    </div>
+</div>
+
