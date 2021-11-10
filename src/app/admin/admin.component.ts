@@ -1,3 +1,4 @@
+import { ConfirmDialogComponent } from './../confirm-dialog/confirm-dialog.component';
 import { TableComponent } from './../table/table.component';
 import { User } from './../user';
 import { HttpClient } from '@angular/common/http';
@@ -68,19 +69,15 @@ export class AdminComponent implements OnInit {
     this.openDialog(user);    
   }
 
-  onDelete(user: User){    
-    const idx = this.dataSource.findIndex(data => data.id === user.id);
-    this.dataSource.splice(idx,1);
-    this.tableData = this.dataSource.slice();
-    this.selectedUser = null;  
+  onDelete(user: User){
+    this.selectedUser = user;
+    const confirmMsg = 'Confirm to delete this record?';
+    this.onDeleteConfirm(confirmMsg, false);    
   }
 
-  deleteSelected() {
-    console.log(this.tableChild.selection.selected);
-    const selectedUserIds = this.tableChild.selection.selected.map(user => user.id);
-    this.dataSource = this.dataSource.filter(user => !selectedUserIds.includes(user.id));
-    this.tableData = this.dataSource.slice();
-    this.tableChild.selection.clear();
+  onDeleteSelected() {
+    const confirmMsg = 'Confirm to delete all selected recrods?';
+    this.onDeleteConfirm(confirmMsg,true);
   }
 
   openDialog(user: User) {
@@ -103,8 +100,47 @@ export class AdminComponent implements OnInit {
             this.dataSource[idx].email = data.email;
             this.tableData = this.dataSource.slice();
           }
+          this.selectedUser = null;
         }
     );    
+  }
+
+  onDeleteConfirm(confirmMsg: string, deleteSeletedAll: boolean) {
+    const confirmDialog = new MatDialogConfig();
+
+    confirmDialog.disableClose = true;
+    confirmDialog.autoFocus = true;
+    confirmDialog.width = '400px';
+
+    confirmDialog.data = { confirmMessage: confirmMsg };    
+    
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, confirmDialog);
+
+    dialogRef.afterClosed().subscribe(
+        data => {
+          if(data) {
+            if(deleteSeletedAll) {
+              this.deleteSelected();
+            } else {
+              this.deleteSingleRecord();
+            }
+          }
+          this.selectedUser = null;
+        }
+    );    
+  }
+  
+  deleteSingleRecord() {
+    const idx = this.dataSource.findIndex(data => data.id === this.selectedUser.id);
+    this.dataSource.splice(idx,1);
+    this.tableData = this.dataSource.slice();
+  }
+
+  deleteSelected() {
+    const selectedUserIds = this.tableChild.selection.selected.map(user => user.id);
+    this.dataSource = this.dataSource.filter(user => !selectedUserIds.includes(user.id));
+    this.tableData = this.dataSource.slice();
+    this.tableChild.selection.clear();
   }
 
 }

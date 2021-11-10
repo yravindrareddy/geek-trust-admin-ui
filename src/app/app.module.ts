@@ -18,6 +18,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from "@angular/material/dialog";
 import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
 import { MatSelectModule } from '@angular/material/select';
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { MatSelectModule } from '@angular/material/select';
     TableComponent,
     PaginatorComponent,
     AdminComponent,
-    EditDialogComponent
+    EditDialogComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     BrowserModule,
