@@ -1,5 +1,5 @@
 import { columnDef, RenderType } from './../columnDef';
-import { AfterViewInit, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatTableDataSource } from '@angular/material/table';
@@ -9,7 +9,7 @@ import { MatTableDataSource } from '@angular/material/table';
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss']
 })
-export class TableComponent implements OnInit, AfterViewInit, OnChanges {
+export class TableComponent implements OnInit, OnChanges {
   @Input() columnDefs: columnDef[];
   @Input() pageSize: number;
   @Input() tableData: any;
@@ -39,10 +39,6 @@ export class TableComponent implements OnInit, AfterViewInit, OnChanges {
     if(changes['tableData'].currentValue !== changes['tableData'].previousValue){
       this.setTableData();
     }
-  }
-
-  ngAfterViewInit(): void {
-    
   }
 
   setTableData(){

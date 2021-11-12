@@ -53,9 +53,7 @@ export class AdminComponent implements OnInit {
   onSearch() {
     this.tableChild.selection.clear();    
     if(this.searchInput){
-      const input = this.searchInput.toLowerCase();
-      console.log(input);
-      console.log(this.dataSource);
+      const input = this.searchInput.toLowerCase();      
       this.tableData = this.dataSource.filter(data => {
         return data.name.toLowerCase().indexOf(input) >= 0 || data.email.toLowerCase().indexOf(input) >= 0 || data.role.toLowerCase().indexOf(input) >= 0;
       });

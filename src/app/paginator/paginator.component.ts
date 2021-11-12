@@ -26,9 +26,10 @@ export class PaginatorComponent implements OnInit, OnChanges {
   }
 
   calculatePages(){
-    if(this.totalRecords) {
+    if(this.totalRecords) {      
       this.totalPages = Math.ceil(this.totalRecords/this.pageSize);
       this.pages = [...Array(this.totalPages).keys()].map(n => n+1);
+      this.selectedPage = 1;
       this.lastPage = this.pages.slice().pop();
     }
   }

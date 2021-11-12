@@ -15,14 +15,14 @@ export class EditDialogComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private dialogRef: MatDialogRef<EditDialogComponent>,
+    public dialogRef: MatDialogRef<EditDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: User) {
   }
 
   ngOnInit() {
     this.form = this.fb.group({
       name: [this.data.name, Validators.required],
-      email: [this.data.email, Validators.required],     
+      email: [this.data.email, Validators.compose([Validators.required, Validators.email])],  
       role: [this.data.role, Validators.required]
     });
   }
